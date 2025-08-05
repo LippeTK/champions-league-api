@@ -1,5 +1,5 @@
 import { PlayerModel } from "../models/playerModel"
-import { findAllPlayers, findPlayerById, insertPlayer } from "../repositories/playersRepository"
+import { deleteOnePlayer, findAllPlayers, findPlayerById, insertPlayer } from "../repositories/playersRepository"
 import * as HttpResponse from "../utils/httpHelper"
 
 export const getPlayerDataService = async() => {
@@ -38,5 +38,13 @@ export const insertPlayerService = async(player:PlayerModel) => {
         response = await HttpResponse.badRequest()
     }
 
+    return response
+}
+
+export const deletePlayerService = async(id:number) => {
+    let response = null
+    await deleteOnePlayer(id)
+
+    response = await HttpResponse.ok({message: "deleted"})
     return response
 }

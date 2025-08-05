@@ -1,8 +1,8 @@
 import {Request, Response} from "express"
-import {getPlayerDataService, getPlayerByIdService, insertPlayerService} from "../services/playersService"
+import * as service from "../services/playersService"
 
 export const getPlayer = async (req:Request, res:Response) =>{
-    const httpResponse = await getPlayerDataService()
+    const httpResponse = await service.getPlayerDataService()
 
     res.status(httpResponse.statusCode).json(httpResponse.body)
 
@@ -10,14 +10,20 @@ export const getPlayer = async (req:Request, res:Response) =>{
 
 export const getPlayerById = async (req:Request, res:Response) =>{
     const id = parseInt(req.params.id)
-    const httpResponse = await getPlayerByIdService(id)
+    const httpResponse = await service.getPlayerByIdService(id)
 
     res.status(httpResponse.statusCode).json(httpResponse.body)
 }
 
 export const insertPlayer = async(req:Request, res:Response) => {
     const player = req.body
-    const httpResponse = await insertPlayerService(player)
+    const httpResponse = await service.insertPlayerService(player)
 
+    res.status(httpResponse.statusCode).json(httpResponse.body)
+}
+
+export const deletePlayer = async(req:Request, res:Response) =>{
+    const id = parseInt(req.params.id)
+    const httpResponse = await service.deletePlayerService(id)
     res.status(httpResponse.statusCode).json(httpResponse.body)
 }
