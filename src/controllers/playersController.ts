@@ -1,8 +1,7 @@
 import {Request, Response} from "express"
-import {getPlayerDataService, getPlayerByIdService} from "../services/playersService"
+import {getPlayerDataService, getPlayerByIdService, insertPlayerService} from "../services/playersService"
 
 export const getPlayer = async (req:Request, res:Response) =>{
-
     const httpResponse = await getPlayerDataService()
 
     res.status(httpResponse.statusCode).json(httpResponse.body)
@@ -10,9 +9,15 @@ export const getPlayer = async (req:Request, res:Response) =>{
 }
 
 export const getPlayerById = async (req:Request, res:Response) =>{
-    
     const id = parseInt(req.params.id)
     const httpResponse = await getPlayerByIdService(id)
+
+    res.status(httpResponse.statusCode).json(httpResponse.body)
+}
+
+export const insertPlayer = async(req:Request, res:Response) => {
+    const player = req.body
+    const httpResponse = await insertPlayerService(player)
 
     res.status(httpResponse.statusCode).json(httpResponse.body)
 }
