@@ -1,12 +1,18 @@
 import {Request, Response} from "express"
-import getPlayerData from "../services/playersService"
+import {getPlayerDataService, getPlayerByIdService} from "../services/playersService"
 
-const getPlayer = async (req:Request, res:Response) =>{
+export const getPlayer = async (req:Request, res:Response) =>{
 
-    const HttpResponse = await getPlayerData()
+    const httpResponse = await getPlayerDataService()
 
-    res.status(HttpResponse.statusCode).json(HttpResponse.body)
+    res.status(httpResponse.statusCode).json(httpResponse.body)
 
 }
 
-export default getPlayer
+export const getPlayerById = async (req:Request, res:Response) =>{
+    
+    const id = parseInt(req.params.id)
+    const httpResponse = await getPlayerByIdService(id)
+
+    res.status(httpResponse.statusCode).json(httpResponse.body)
+}
