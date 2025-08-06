@@ -124,7 +124,7 @@ Content-Type: application/json
 
 3. Execute o projeto:
    ```bash
-   npm run start:dev
+   npm run start:watch
    ```
 
 4. Acesse: `http://localhost:3333`
@@ -144,5 +144,4 @@ Content-Type: application/json
 ## 👨‍💻 Autor
 
 **Felipe Carvalho**  
-Desenvolvedor FullStack apaixonado por tecnologia, em constante aprendizado.
 ---
